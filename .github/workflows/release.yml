@@ -7,7 +7,7 @@ on:
 jobs:
   build_and_release:
     name: Build and Release
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
@@ -17,3 +17,11 @@ jobs:
           dotnet-version: 9.0.x
       - name: Install MAUI workload
         run: dotnet workload install maui-android
+      - name: Build APK
+        run: |
+          cd MauiTemplate
+          dotnet publish -c Release -f net9.0-android -o ./bin/Release/net9.0-android/publish `
+            -p:AndroidPackageFormat=apk `
+            -p:AndroidKeyStore=false `
+            -p:ApplicationId=com.mauitemplate `
+            -p:ApplicationName=MauiTemplate
