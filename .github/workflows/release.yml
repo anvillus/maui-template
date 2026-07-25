@@ -8,3 +8,6 @@ jobs:
   build_and_release:
     name: Build and Release
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
